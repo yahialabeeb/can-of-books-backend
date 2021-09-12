@@ -22,7 +22,7 @@ const bookModel = mongoose.model('favorite', bookFavSchema)
 function seedDataCollection() {
     const Almajreat = new bookModel({
         title: 'Almajreat',
-        description:"the main Idea of the booki= is putting your attention on things you can't change is wrong" ,
+        description:"the main Idea of the book is putting your attention on things you can't change is wrong" ,
         email:'yahia_labib@hotmail.com',
         status: 'done'
     })
