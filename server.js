@@ -29,7 +29,7 @@ function deleteBookHandler(request, response) {
     } else {
       bookModel.find({ email }, function (err, bookData) {
         if (err) {
-          console.log("error in getting the data");
+          alert("error in getting the data");
         } else {
           response.send(bookData);
         }
