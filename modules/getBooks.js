@@ -23,4 +23,3 @@ function getBooks(req,res) {
 }
 module.exports = getBooks;
 
-//mongodb://yahia:<Y12345>@yahia-db-shard-00-00.e3jkm.mongodb.net:27017,yahia-db-shard-00-01.e3jkm.mongodb.net:27017,yahia-db-shard-00-02.e3jkm.mongodb.net:27017/bookslib?ssl=true&replicaSet=atlas-8jktol-shard-0&authSource=admin&retryWrites=true&w=majority
