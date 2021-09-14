@@ -31,7 +31,7 @@ function deleteBookHandler(request, response) {
         if (err) {
           console.log("error in getting the data");
         } else {
-          res.send(bookData);
+          response.send(bookData);
         }
       });
     }
