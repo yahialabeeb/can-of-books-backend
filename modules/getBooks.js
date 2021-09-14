@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 
 mongoose.connect(process.env.mongolink)
-// 'mongodb://localhost:27017/books1'
+
 const bookModel = require('./bookModel.js')
 
 
