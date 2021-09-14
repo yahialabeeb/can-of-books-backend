@@ -11,6 +11,10 @@ const PORT = process.env.PORT;
 const server = express();
 server.use(express.json());
 server.use(cors());
+
+const mongoose = require('mongoose')
+
+mongoose.connect(process.env.mongolink)
 //---------------------------------------------------------------------
 
 server.get("/books", getBooks);

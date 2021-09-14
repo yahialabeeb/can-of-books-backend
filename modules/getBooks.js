@@ -2,8 +2,10 @@
 
 const mongoose = require('mongoose')
 
-mongoose.connect(mongolink)
-// 'mongodb://localhost:27017/books1'
+
+mongoose.connect(process.env.mongolink)
+
+
 const bookModel = require('./bookModel.js')
 
 

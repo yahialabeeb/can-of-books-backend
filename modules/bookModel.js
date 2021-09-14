@@ -2,7 +2,9 @@
 
 const mongoose = require('mongoose')
 
-mongoose.connect(mongolink)
+
+mongoose.connect(process.env.mongo_link)
+
 
 //Schema
 
