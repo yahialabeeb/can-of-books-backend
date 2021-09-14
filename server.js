@@ -25,7 +25,7 @@ function deleteBookHandler(request, response) {
   let bookID = request.params._id;
   bookModel.remove({ _id: bookID }, (error, bookData) => {
     if (error) {
-      console.log("error in deleteing the data");
+      console.log("error in deleting the data");
     } else {
       bookModel.find({ email }, function (err, bookData) {
         if (err) {
