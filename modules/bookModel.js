@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost:27017/books1')
+mongoose.connect(process.env.mongolink)
 
 //Schema
 
