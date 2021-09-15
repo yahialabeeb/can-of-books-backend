@@ -70,7 +70,7 @@ function deleteBookHandler(request, response) {
 }
 
 function updateBookHandler(req, res) {
-  let { title, description, status } = req.body;
+  let {email, title, description, status } = req.body;
   let bookID = req.params.bookId;
   console.log(req.body)
   bookModel.findOne({ _id: bookID }, (error, bookInfo) => {
@@ -84,11 +84,11 @@ function updateBookHandler(req, res) {
     console.log({ bookInfo })
     bookInfo.save()
       .then(() => {
-        bookModel.find({ bookID }, function (err, ownerData) {
+        bookModel.find({ email }, function (err, ownerData) {
           if (err) {
             console.log('error in getting the data')
           } else {
-            // console.log(ownerData);
+            console.log(ownerData);
             res.send(ownerData)
           }
         })
