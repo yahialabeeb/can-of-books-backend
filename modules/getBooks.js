@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 
 
-mongoose.connect(process.env.mongolink)
+mongoose.connect(process.env.mongo_link)
 
 
 const bookModel = require('./bookModel.js')
@@ -18,7 +18,7 @@ function getBooks(req,res) {
             console.log('error in getting the data')
             res.send("error")
         } else {
-            console.log(ownerData);
+            // console.log(ownerData);
             res.send(ownerData)
         }
     })
