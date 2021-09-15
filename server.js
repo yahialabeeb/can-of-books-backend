@@ -13,14 +13,14 @@ server.use(express.json());
 server.use(cors());
 
 const mongoose = require('mongoose')
+mongoose.connect(process.env.mongo_link)
 
-mongoose.connect(process.env.mongolink)
 //---------------------------------------------------------------------
 
 server.get("/books", getBooks);
 server.delete("/deletebook/:bookId", deleteBookHandler);
 server.post('/addbook', addBookHandler);
-
+server.put("/updatebook/:bookId", updateBookHandler);
 server.get("*", (request, response) => {
   response.status(404).send("not found");
 });
@@ -29,18 +29,18 @@ server.get("*", (request, response) => {
 async function addBookHandler(req, res) {
 
   console.log(req.body);
- 
-  let {title,description,email,status} = req.body;
 
-  await bookModel.create({title,description,email,status})
+  let { title, description, email, status } = req.body;
+
+  await bookModel.create({ title, description, email, status })
 
   bookModel.find({ email }, function (err, ownerData) {
-      if (err) {
-          console.log('error in getting the data')
-      } else {
-          console.log(ownerData);
-          res.send(ownerData)
-      }
+    if (err) {
+      console.log('error in getting the data')
+    } else {
+      // console.log(ownerData);
+      res.send(ownerData)
+    }
   })
 
 
@@ -56,7 +56,7 @@ function deleteBookHandler(request, response) {
       console.log("error in deleting the data");
     } else {
       console.log(bookData);
-      bookModel.find({ email: email1 }, (err, ownerData)=> {
+      bookModel.find({ email: email1 }, (err, ownerData) => {
         if (err) {
           // console.log('error in getting the data')
           response.send("error")
@@ -66,6 +66,35 @@ function deleteBookHandler(request, response) {
         }
       })
     }
+  })
+}
+
+function updateBookHandler(req, res) {
+  let { title, description, status } = req.body;
+  let bookID = req.params.bookId;
+  console.log(req.body)
+  bookModel.findOne({ _id: bookID }, (error, bookInfo) => {
+
+    console.log(bookInfo)
+
+    bookInfo.title = title;
+    bookInfo.description = description;
+    bookInfo.status = status;
+
+    console.log({ bookInfo })
+    bookInfo.save()
+      .then(() => {
+        bookModel.find({ bookID }, function (err, ownerData) {
+          if (err) {
+            console.log('error in getting the data')
+          } else {
+            // console.log(ownerData);
+            res.send(ownerData)
+          }
+        })
+      }).catch(error => {
+        console.log('error in saving ')
+      })
   })
 }
 
